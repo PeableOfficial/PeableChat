@@ -1,0 +1,26 @@
+{
+  "cwd": "/home/albertisernalvarez/PeableChat2",
+  "type": [
+    "pwa",
+    "capacitor"
+  ],
+  "name": "Chat by Peable",
+  "framework": "vue",
+  "template": "single-view",
+  "bundler": "vite",
+  "cssPreProcessor": false,
+  "theming": {
+    "customColor": true,
+    "color": "#00ff56",
+    "darkMode": false,
+    "iconFonts": true
+  },
+  "customBuild": false,
+  "pkg": "co.peable.chat",
+  "capacitor": {
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  }
+}
