@@ -36,7 +36,7 @@
           </f7-block>
           <f7-list media-list dividers-ios strong-ios outline-ios>
             <f7-list-item v-for="(item, index) in  conversations " :key="index" :link="`/c/${item.id}/`"
-              :title="item.title" badge="5" badge-color="green" :after="item.lastactivity"
+              :title="item.title" :badge="`${item.id}`" badge-color="green" :after="item.lastactivity"
               text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sagittis tellus ut turpis condimentum, ut dignissim lacus tincidunt. Cras dolor metus, ultrices condimentum sodales sit amet, pharetra sodales eros. Phasellus vel felis tellus. Mauris rutrum ligula nec dapibus feugiat. In vel dui laoreet, commodo augue id, pulvinar lacus.">
               <template #media>
                 <img style="border-radius: 3em; object-fit: cover;" :src="`https:${item.image}`" width="44" height="44" />
@@ -59,7 +59,7 @@
           </f7-block>
           <f7-list media-list dividers-ios strong-ios outline-ios>
             <f7-list-item v-for="(item, index) in  conversations " :key="index" :link="`/c/${item.id}/`"
-              :title="item.title" badge="5" badge-color="green" :after="item.lastactivity"
+              :title="item.title" :badge="5" badge-color="green" :after="item.lastactivity"
               text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sagittis tellus ut turpis condimentum, ut dignissim lacus tincidunt. Cras dolor metus, ultrices condimentum sodales sit amet, pharetra sodales eros. Phasellus vel felis tellus. Mauris rutrum ligula nec dapibus feugiat. In vel dui laoreet, commodo augue id, pulvinar lacus.">
               <template #media>
                 <img style="border-radius: 3em; object-fit: cover;" :src="`https:${item.image}`" width="44" height="44" />

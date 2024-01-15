@@ -7,7 +7,13 @@
         <f7-list contacts-list strong-ios>
             <f7-list-group>
                 <f7-list-item title="A" group-title />
-                <f7-list-item title="Aaron " />
+                <f7-list-item title="Aaron ">
+                    <template #media>
+                        <img style="border-radius: 3em; object-fit: cover;"
+                            src="https://cloud.peable.co/kbKQmmuArPyWn0ECnN16XsrxBQSO1qzX4SN6YdMhHzAOxq4XKGC8TVSmcLKyNUEAOwXeV40AurmFYZTcoYpN1Naahix"
+                            width="44" height="44" />
+                    </template>
+                </f7-list-item>
                 <f7-list-item title="Abbie" />
                 <f7-list-item title="Adam" />
                 <f7-list-item title="Adele" />

@@ -1,7 +1,7 @@
 
 <template>
     <f7-page>
-        <f7-navbar title="Messages" back-link="Back"></f7-navbar>
+        <f7-navbar :title="conversationData.title" back-link="Back"></f7-navbar>
 
         <f7-messagebar ref="messagebar" v-model:value="messageText" :placeholder="placeholder"
             :attachments-visible="attachmentsVisible" :sheet-visible="sheetVisible">
@@ -59,9 +59,11 @@ import $ from 'dom7';
 
 import store from '../js/store.js'
 
-store.dispatch('getConversation', 5);
-
 export default {
+    props: {
+        f7route: Object,
+        f7router: Object,
+    },
     components: {
         f7Navbar,
         f7Page,
@@ -77,71 +79,12 @@ export default {
     },
     data() {
         return {
+            conversationData: store.getters.conversations.value.filter((conversation) => conversation.id === this.f7route.params.conversationId)[0],
             attachments: [],
             sheetVisible: false,
             typingMessage: null,
             messageText: '',
-            messagesData: [
-                {
-                    userId: 108,
-                    type: 'sent',
-                    text: 'Hi, Gabriela',
-                },
-                {
-                    userId: 108,
-                    type: 'sent',
-                    text: 'How are you?',
-                },
-                {
-                    userId: 10,
-                    name: 'Kate',
-                    type: 'received',
-                    text: 'Hi, I am good!',
-                    avatar: 'https://cdn.framework7.io/placeholder/people-100x100-9.jpg',
-                },
-                {
-                    userId: 1,
-                    name: 'Blue Ninja',
-                    type: 'received',
-                    text: 'Hi there, I am also fine, thanks! And how are you?',
-                    avatar: 'https://cdn.framework7.io/placeholder/people-100x100-7.jpg',
-                },
-                {
-                    userId: 108,
-                    type: 'sent',
-                    text: 'Hey, Blue Ninja! Glad to see you ;)',
-                },
-                {
-                    userId: 108,
-                    type: 'sent',
-                    text: 'Hey, look, cutest kitten ever!',
-                },
-                {
-                    userId: 108,
-                    type: 'sent',
-                    image: 'https://cdn.framework7.io/placeholder/cats-200x260-4.jpg',
-                },
-                {
-                    userId: 10,
-                    name: 'Kate',
-                    type: 'received',
-                    text: 'Nice!',
-                    avatar: 'https://cdn.framework7.io/placeholder/people-100x100-9.jpg',
-                },
-                {
-                    userId: 10,
-                    name: 'Kate',
-                    type: 'received',
-                    text: 'Like it very much!',
-                    avatar: 'https://cdn.framework7.io/placeholder/people-100x100-9.jpg',
-                },
-                {
-                    userId: 1,
-                    type: 'received',
-                    text: 'Awesome!',
-                    avatar: 'https://cdn.framework7.io/placeholder/people-100x100-7.jpg',
-                },
-            ],
+            messagesData: store.getters.conversations.value.filter((conversation) => conversation.id === this.f7route.params.conversationId)[0].messages,
             images: [
                 'https://cdn.framework7.io/placeholder/cats-300x300-1.jpg',
                 'https://cdn.framework7.io/placeholder/cats-200x300-2.jpg',
@@ -154,23 +97,7 @@ export default {
                 'https://cdn.framework7.io/placeholder/cats-400x300-9.jpg',
                 'https://cdn.framework7.io/placeholder/cats-300x150-10.jpg',
             ],
-            people: [
-                {
-                    userId: 108,
-                    name: 'Albert Isern Alvarez',
-                    avatar: 'https://cdn.framework7.io/placeholder/people-100x100-7.jpg',
-                },
-                {
-                    userId: 10,
-                    name: 'Kate Johnson',
-                    avatar: 'https://cdn.framework7.io/placeholder/people-100x100-9.jpg',
-                },
-                {
-                    userId: 1,
-                    name: 'Blue Ninja',
-                    avatar: 'https://cdn.framework7.io/placeholder/people-100x100-7.jpg',
-                },
-            ],
+            people: store.getters.conversations.value.filter((conversation) => conversation.id === this.f7route.params.conversationId)[0].people,
             answers: [
                 'Yes!',
                 'No',
@@ -203,6 +130,11 @@ export default {
         f7ready(() => {
             self.messagebar = f7.messagebar.get(self.$refs.messagebar.$el);
         });
+
+        store.dispatch('getConversation', this.f7route.params.conversationId);
+        store.dispatch('getConversations');
+
+        console.log(store.getters.conversations.value.filter((conversation) => conversation.id === this.f7route.params.conversationId));
     },
     methods: {
         isFirstMessage(message, index) {
