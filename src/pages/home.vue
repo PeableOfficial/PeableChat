@@ -17,7 +17,7 @@
     <form class="searchbar">
       <div class="searchbar-inner">
         <div class="searchbar-input-wrap">
-          <input type="search" placeholder="Search" />
+          <input type="search" placeholder="Search" v-model="searchQuery" />
           <i class="searchbar-icon"></i>
           <span class="input-clear-button"></span>
         </div>
@@ -111,7 +111,7 @@
 </template>
 
 <script>
-import { onMounted } from 'vue';
+import { onMounted, computed, ref } from 'vue';
 import { useStore, f7Navbar, f7Page, f7BlockTitle, f7List, f7ListItem } from 'framework7-vue';
 
 import store from '../js/store.js'
@@ -121,6 +121,8 @@ export default {
     // retrieve "conversations" getter handler value. Initially empty array
     const conversations = useStore('conversations');
     const conversationsLoading = true;
+    const searchQuery = ref('');
+    const searchLoading = ref(false); // Add this line
 
     onMounted(() => {
       setTimeout(() => {
@@ -129,9 +131,20 @@ export default {
       }, 1000);
     });
 
+    const filteredConversations = computed(() => {
+      searchLoading.value = true; // Set loading to true when search starts
+      const filtered = conversations.value.filter(conversation => {
+        return conversation.title.toLowerCase().includes(searchQuery.value.toLowerCase());
+      });
+      searchLoading.value = false; // Set loading to false when search ends
+      return filtered;
+    });
+
     return {
-      conversations,
+      conversations: filteredConversations,
       conversationsLoading,
+      searchQuery,
+      searchLoading, // Return this in the setup function
     }
   }
 }
