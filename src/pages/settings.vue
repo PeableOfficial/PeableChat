@@ -22,22 +22,24 @@
             </f7-list-item>
         </f7-list>
 
-        <f7-block-title medium>Layout Themes</f7-block-title>
+        <f7-block-title medium>App Themes</f7-block-title>
         <f7-block strong>
-            <p>Framework7 comes with 2 main layout themes: Light (default) and Dark:</p>
+            <p>Peable Chat offers two beautiful app themes: Light (default) and Dark:</p>
             <div class="grid grid-cols-2 grid-gap">
                 <div class="bg-color-white demo-theme-picker" @click="setLayoutTheme('light')">
                     <f7-checkbox v-if="theme === 'light'" checked disabled />
+                    <div class="theme-name">Light</div>
                 </div>
                 <div class="bg-color-black demo-theme-picker" @click="setLayoutTheme('dark')">
                     <f7-checkbox v-if="theme === 'dark'" checked disabled />
+                    <div class="theme-name">Dark</div>
                 </div>
             </div>
         </f7-block>
 
         <f7-block-title medium>Default Color Themes</f7-block-title>
         <f7-block strong>
-            <p>Framework7 comes with {{ colors.length }} color themes set.</p>
+            <p>Peable Chat comes with {{ colors.length }} color themes set.</p>
             <div class="grid grid-cols-3 medium-grid-cols-4 large-grid-cols-5 grid-gap">
                 <div v-for="(color, index) in colors" :key="index">
                     <f7-button fill round small class="demo-color-picker-button" :color="color"

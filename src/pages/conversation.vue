@@ -1,7 +1,13 @@
 
 <template>
     <f7-page>
-        <f7-navbar :title="conversationData.title" back-link="Back"></f7-navbar>
+        <f7-navbar :title="conversationData.title" back-link="Back" large :sliding="true">
+            <f7-nav-right>
+                <f7-link icon-ios="f7:phone" icon-md="material:call"></f7-link>
+                <f7-link icon-ios="f7:videocam" icon-md="material:videocam"></f7-link>
+                <f7-link icon-ios="f7:ellipsis_vertical" icon-md="material:more_vert"></f7-link>
+            </f7-nav-right>
+        </f7-navbar>
 
         <f7-messagebar ref="messagebar" v-model:value="messageText" :placeholder="placeholder"
             :attachments-visible="attachmentsVisible" :sheet-visible="sheetVisible">
@@ -9,6 +15,7 @@
                 <f7-link icon-ios="f7:camera_fill" icon-md="material:camera_alt" @click="sheetVisible = !sheetVisible" />
             </template>
             <template #inner-end>
+                <f7-link icon-ios="f7:mic" icon-md="material:mic" @click="mic" />
                 <f7-link icon-ios="f7:arrow_up_circle_fill" icon-md="material:send" @click="sendMessage" />
             </template>
             <f7-messagebar-attachments>

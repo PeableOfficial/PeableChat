@@ -7,6 +7,7 @@
       </f7-nav-left>
       <f7-nav-title sliding>Chat by Peable</f7-nav-title>
       <f7-nav-right>
+        <f7-link icon-ios="f7:search" icon-md="material:search" @click="toggleSearch"></f7-link>
         <f7-link icon-ios="f7:menu" icon-md="material:more_vert" href="/settings/"></f7-link>
       </f7-nav-right>
       <f7-nav-title-large>Chat by Peable</f7-nav-title-large>
@@ -125,10 +126,7 @@ export default {
     const searchLoading = ref(false); // Add this line
 
     onMounted(() => {
-      setTimeout(() => {
-        // load conversations when component mounted
-        store.dispatch('getConversations');
-      }, 1000);
+      store.dispatch('getConversations');
     });
 
     const filteredConversations = computed(() => {

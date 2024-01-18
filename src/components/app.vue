@@ -3,12 +3,32 @@
 
     <!-- Left panel with cover effect-->
     <f7-panel left cover>
-      <f7-view>
-        <f7-page>
-          <f7-navbar title="Chat"></f7-navbar>
-          <f7-block>Left panel content goes here</f7-block>
-        </f7-page>
-      </f7-view>
+      <f7-navbar title="Chat"></f7-navbar>
+      <f7-list menu-list strong-ios outline-ios>
+        <f7-list-item link="/home" title="Home" :selected="selected === 'home'" @click="() => (selected = 'home')">
+          <template #media>
+            <f7-icon md="material:home" ios="f7:house_fill" />
+          </template>
+        </f7-list-item>
+        <f7-list-item link="/profile" title="Profile" :selected="selected === 'profile'"
+          @click="() => (selected = 'profile')">
+          <template #media>
+            <f7-icon md="material:person" ios="f7:person_fill" />
+          </template>
+        </f7-list-item>
+        <f7-list-item link="/settings/" title="Settings" :selected="selected === 'settings'"
+          @click="() => (selected = 'settings')">
+          <template #media>
+            <f7-icon md="material:settings" ios="f7:gear_alt_fill" />
+          </template>
+        </f7-list-item>
+        <f7-list-item link="/logout" title="Logout" :selected="selected === 'logout'"
+          @click="() => (selected = 'logout')">
+          <template #media>
+            <f7-icon md="material:logout" ios="f7:arrow_right_square_fill" />
+          </template>
+        </f7-list-item>
+      </f7-list>
     </f7-panel>
 
     <!-- Your main view, should have "view-main" class -->
